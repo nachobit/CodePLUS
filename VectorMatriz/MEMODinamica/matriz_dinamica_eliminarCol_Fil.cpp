@@ -112,9 +112,7 @@ void MiMatrizDin::Destruir ()
             delete [] m[i];
     
          delete [] m;
-          
-         m = 0;
-         
+         m = 0; 
          nfil = ncol = 0;
      }
 }
