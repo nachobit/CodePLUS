@@ -11,7 +11,7 @@ es mayor que el de cimpar y falso en caso contrario.
 #include <set>
 using namespace std;
 
-bool masparesqimpares (const set<int> & c, set<int> &cpar, set<int> &cimpar){
+bool masparesqimpares (const set<int> &c, set<int> &cpar, set<int> &cimpar){
 	set<int>::iterator p;
 
 	for(p=c.begin(); p!=c.end(); ++p)
