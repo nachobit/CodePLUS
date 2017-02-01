@@ -171,7 +171,6 @@ void agrupar_elemento(list<int> &entrada, int k){
 
 
 /*
-
 Usando el TDA list<int>, construir una función template<class T> que agrupe
 en la 1ª parte de la lista los elem < k y en la 2ª los elem >= k.
 NOTA: no se puede modificar el tam de la lista y usar iteradores.
@@ -189,9 +188,44 @@ while(it!=lista.end()){
 	else 	++it;
 }
 
+/*
+Usando el TDA list<int>, construir una función que permita "DUPLICAR" una lista
+intercalando tras cada elemento en la pos i, el elem en la posición n-i-1
+
+*/
+template<class T>
+void duplicar(const list<T> &lista_inicial, list<T> &lista_final){
+	assert(lista_inicial.size()>0);
+	lista<T>copia_lista(lista_inicial);
+	typename list<T>::const_iterator it;
+	typename list<T>::reverse_iterator rit;
+
+	for(it=lista_inicial.begin(); rit!=copia_lista.rbegin(); it!=lista_inicial.end(); rit!=copia_lista.redn(); ++it; ++rit){
+		lista_final.push_back(*it);
+		lista_final.push_back(*rit);
+	}
+
+}
+
 
 /*
+Dada una lista de enteros elimine todos aquellos 
+que no sean más grandes que todos los anteriores
+	Ej: <1,3,4,2,4,7,7,1>  --> 	<1,3,4,7>
+*/
+void subsecuencia(list<int> & l){
+	list<int>::iterator it=l.begin();
+	while(it!=l.end()){
+		list<int>::iterator next=it;
+		++next;
+		if(next!=l.end() && *it>= *next)
+			l.erase(next);
+		else 	it=next;
+	}
+}
 
+
+/*
 Dada una lista<int> con elem repetidos, diseñar una función que construya a partir de ella
 una lista ordenada de listas, de forma que en la lista res los elementos iguales, se agrupen
 en la misma sublista.

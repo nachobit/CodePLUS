@@ -127,6 +127,40 @@ int main(){
 }
 
 
+/* Elementos Repetidos */
+template<class T>
+list<T> repetidos(list<T> l){
+	set<T> elem_dif;
+	set<T>rep;
+	list<T>l_rep;
+	for(typename list<T>::iterator it=l.begin(); it!=l.end(); ++it){
+		if(elem_dif.find(*it)==elem_dif.end())
+			elem_dif.insert(*it);
+		else 	rep.insert(*it);
+	}
+	for(typename set<T>::iterator it=rep.begin(); it!=rep.end(); ++it){
+		l_rep.push_back(*it);
+	}
+	return l_rep;
+}
+
+/* queue */
+queue<int> multiinterssecion(queue<int> q1, queue<int> q2){
+	queue<int> q;
+	while(!q1.empty() && !q2.empty()){
+		if(q1.front()==q2.front()){
+			q.push(q1.front());
+			q1.pop();
+			q2.pop();
+		}
+		else if(q1.front()< q2.front())
+			q1.pop();
+		else
+			q2.pop();
+	}
+	return q;
+}
+
 
 /* MULTISET */
 
