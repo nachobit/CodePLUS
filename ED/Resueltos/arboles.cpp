@@ -145,3 +145,64 @@ void inordenrecursivo(Arbolbinario<int> A){
 }
 
 
+/*
+Leer de la entrada conjunto de enteros hasta final de entrada.
+Listarlos ordenados SIN repeticiones
+*/
+
+int main(int argc, char *argv[]){
+	ABB<int> a;
+	ABB<int>::iterator p;
+	int i;
+	while(cin>>i){
+		a.insertar(i);
+	}
+	for(p=a.primero(); p!=a.final(); p=a.siguiente(p))
+		cout << a.etiqueta(p) << " ";
+	return 0;
+}
+
+//for(p=a.begin(); p!=a.end(); ++p)
+//		cout << *p << " ";
+
+/*
+Leer de la entrada 2 conjuntos de enteros (1º leer nº elementos y luego los elementos)
+Insertarlos en 2 árboles. Listarlos. Finalmente UNIRLOS.
+*/
+
+void listar_abb(const ABB<int> &a){
+	ABB<int>::iterator p;
+	cout << "Arbol con" << a.size() << " elementos" << endl;
+	for(p=a.primero(); p!=a.final(); p=a.siguiente(p))
+		cout << a.etiqueta(p) << " ";
+	cout << endl;
+}
+
+int main(int argc, char *argv[]){
+	ABB<int> a,b;
+	ABB<int>::iterator p;
+	int i,e;
+	cout << "Nº elementos primer árbol: " << endl;
+	cin >>i;
+	while(i!=0){
+		cin >> e;
+		a.insertar(e);
+		i--;
+	}
+	cout << "Nº elementos segundo árbol: " << endl;
+	cin >> i;
+	while(i!=0){
+		cin >> e;
+		b.insertar(e);
+		i--;
+	}
+	cout << "primer árbol: " << endl;
+	listar_abb(a);
+	cout << "segundo arbol: " << endl;
+	listar_abb(b);
+	for(p=b.primero(); p!=b.final(); p=b.siguiente(p))
+		a.insertar(b.etiqueta(p));
+	cout << "UNION: " << endl;
+	listar_abb(a);
+	return 0;
+}
